@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Costo Rural</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #f5f7fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 420px;
+            background: #fff;
+            margin: 40px auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            padding: 32px 24px 26px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #388e3c;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #222;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            margin-bottom: 18px;
+            border: 1px solid #bdbdbd;
+            border-radius: 6px;
+            background: #f7f7f7;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #388e3c;
+            color: #fff;
+            font-size: 1.12em;
+            border: none;
+            border-radius: 7px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #2e7031;
+        }
+        .resultado {
+            margin-top: 24px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            color: #222;
+            font-size: 1.15em;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(56,142,60,0.08);
+            font-weight: 600;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 36px;
+            color: #888;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Costo Rural</h1>
+        <form id="costForm">
+            <label for="insumos">Costo de insumos (Gs):</label>
+            <input type="number" id="insumos" min="0" step="any" value="0" required>
+            
+            <label for="mano">Costo de mano de obra (Gs):</label>
+            <input type="number" id="mano" min="0" step="any" required>
+            
+            <label for="maquinaria">Costo de maquinaria (Gs):</label>
+            <input type="number" id="maquinaria" min="0" step="any" required>
+            
+            <label for="otros">Otros gastos (Gs):</label>
+            <input type="number" id="otros" min="0" step="any" value="0">
+            
+            <button type="submit">Calcular costo total</button>
+        </form>
+        <div class="resultado" id="resultado" style="display:none"></div>
+    </div>
+    <div class="footer">
+        &copy; 2025 - Osmar Da Silva - ProyectosOsmar
+    </div>
+    <script>
+        document.getElementById('costForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const insumos = parseFloat(document.getElementById('insumos').value) || 0;
+            const mano = parseFloat(document.getElementById('mano').value) || 0;
+            const maquinaria = parseFloat(document.getElementById('maquinaria').value) || 0;
+            const otros = parseFloat(document.getElementById('otros').value) || 0;
+            const total = insumos + mano + maquinaria + otros;
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.style.display = "block";
+            resultadoDiv.innerHTML = `
+                <strong>Costo total estimado:</strong><br>
+                <span style="font-size:1.3em;color:#388e3c;">Gs ${total.toLocaleString('es-PY')}</span>
+            `;
+        });
+    </script>
+</body>
+</html>
